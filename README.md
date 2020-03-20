@@ -1,4 +1,4 @@
-# mt-app-3
+# mt-project
 
 > A Vue.js project
 

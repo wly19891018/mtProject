@@ -70,7 +70,7 @@ export default {
             var self = this;
             setTimeout(function() {
                 self.isFocus = false;
-            }, 200)
+            }, 500)
         },
         input() {
             api.getSearchList().then(res => {

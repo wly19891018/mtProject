@@ -120,5 +120,5 @@ export default {
 </script>
 
 <style lang="scss">
-@import "@/assets/css/index/life.scss";
+    @import "@/assets/css/index/life.scss";
 </style>

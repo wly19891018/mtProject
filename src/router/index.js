@@ -1,3 +1,4 @@
+/* eslint-disable */
 import Vue from 'vue'
 import Router from 'vue-router'
 import defaultPage from '@/layout/default.vue'
@@ -9,10 +10,26 @@ import Login from '@/page/login.vue'
 import Register from '@/page/register.vue'
 import Detail from '@/page/detail.vue'
 Vue.use(Router)
-
-export default new Router({
+const router = new Router({
   mode: 'history',
   routes: [
+    {
+      path: '/blank',
+      name: 'blank',
+      component: blankPage,
+      children: [
+        {
+          path: 'login',
+          name: 'login',
+          component: Login
+        },
+        {
+          path: 'register',
+          name: 'register',
+          component: Register
+        }
+      ]
+    },
     {
       path: '/',
       name: 'default',
@@ -30,7 +47,7 @@ export default new Router({
           component: ChangeCity
         },
         {
-          path: 'index',
+          path: '/index',
           name: 'index',
           component: Index
         },
@@ -40,22 +57,14 @@ export default new Router({
           component: Detail
         }
       ]
-    }, {
-      path: '/blank',
-      name: 'blank',
-      component: blankPage,
-      children: [
-        {
-          path: 'login',
-          name: 'login',
-          component: Login
-        },
-        {
-          path: 'register',
-          name: 'register',
-          component: Register
-        }
-      ]
     }
   ]
-})
+});
+router.beforeEach((to, from, next) => {
+  if (to.matched.length ===0) {  //如果未匹配到路由,则返回首页
+    next('/');
+  } else {
+    next();
+  }
+});
+export default router
